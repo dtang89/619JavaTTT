@@ -2,7 +2,6 @@
 *@author David Tang
  *@author 00502532
  */
-//STUDENTS SHOULD ADD CLASS COMMENTS, METHOD COMMENTS, FIELD COMMENTS 
 
 
 public class Board implements Constants {
@@ -136,6 +135,83 @@ public class Board implements Constants {
 				result = 1;
 		}
 		return result;
+	}
+
+	public String display() {
+		String display="";
+		display+= displayColumnHeaders();
+		display+= addHyphens();
+
+		for (int row = 0; row < 3; row++){
+			display+= addSpaces();
+			display+= "    row " + row + ' ';
+			for (int col = 0; col < 3; col++)
+				display+= "|  " + getMark(row, col) + "  ";
+			display+="|\n";
+			display+= addSpaces();
+			display+= addHyphens();
+//        displayColumnHeaders();
+//        addHyphens();
+//        for (int row = 0; row < 3; row++) {
+//            addSpaces();
+//            System.out.print("    row " + row + ' ');
+//            for (int col = 0; col < 3; col++)
+//                System.out.print("|  " + getMark(row, col) + "  ");
+//            System.out.println("|");
+//            addSpaces();
+//            addHyphens();
+		}
+		return display;
+	} //Used to create the display of the board
+
+
+	/** Displays the column headers for the board
+	 *
+	 */
+	public String displayColumnHeaders() {
+		String columnHeaders="";
+		columnHeaders+= "          ";
+		//System.out.print("          ");
+		for (int j = 0; j < 3; j++)
+			columnHeaders+= "|col " + j;
+		//System.out.print("|col " + j);
+		//System.out.println();
+		columnHeaders+='\n';
+
+		return columnHeaders;
+	}
+
+	/** Displays the hyphens for the board
+	 *
+	 */
+	public String addHyphens() {
+		String hyphens = "";
+		hyphens+="          ";
+		for (int j = 0; j < 3; j++)
+			hyphens+="+-----";
+		hyphens+="+\n";
+
+		return hyphens;
+//        //System.out.print("          ");
+//        for (int j = 0; j < 3; j++)
+//            System.out.print("+-----");
+//        System.out.println("+");
+	}
+
+	/** Displays the spaces for the board
+	 *
+	 */
+	public String addSpaces() {
+		String spaces = "";
+		spaces+="          ";
+		for (int j = 0; j < 3; j++)
+			spaces+="|     ";
+		spaces+="|\n";
+		return spaces;
+//        System.out.print("          ");
+//        for (int j = 0; j < 3; j++)
+//            System.out.print("|     ");
+//        System.out.println("|");
 	}
 
 

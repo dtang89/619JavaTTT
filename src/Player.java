@@ -45,13 +45,13 @@ public class Player {
      */
     //runs until win condition is met
     public void play() {
-        System.out.println(name);
         if(board.xWins() == false && board.oWins() == false && board.isFull() == false){
             makeMove();
-            //board.display();
+            out.println(board.display());
         }
         else if(board.xWins()) {
-            System.out.println(opponent.name + " is the winner!");
+            out.println(opponent.name + " is the winner!");
+            System.out.println();
             System.exit(0);
         }
         else if(board.oWins()) {
@@ -72,6 +72,7 @@ public class Player {
         boolean check = false;
         Scanner s = new Scanner(System.in);
         while (!check) {
+            out.println("test");
             System.out.println("Make your move! Enter which row you would like to play.");
             row = Integer.parseInt(s.nextLine());
             while (row > 2 || row < 0) {
