@@ -1,5 +1,3 @@
-package server;
-
 /** An interface containing char constants
  * @author David Tang
  */

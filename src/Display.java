@@ -1,5 +1,3 @@
-package client;
-
 public class Display {
 
     /** Displays the board
@@ -12,7 +10,7 @@ public class Display {
             addSpaces();
             System.out.print("    row " + row + ' ');
             for (int col = 0; col < 3; col++)
-                System.out.print("|  " + getMark(row, col) + "  ");
+                //System.out.print("|  " + getMark(row, col) + "  ");
             System.out.println("|");
             addSpaces();
             addHyphens();

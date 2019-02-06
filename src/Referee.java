@@ -1,7 +1,3 @@
-package server;
-
-import server.Board;
-
 /** Represents the referee for the game
  * @author David Tang
  */
@@ -16,7 +12,6 @@ public class Referee {
     public void runTheGame(){
         xPlayer.setOpponent(oPlayer);
         oPlayer.setOpponent(xPlayer);
-        board.display();
         xPlayer.play();
     }
 

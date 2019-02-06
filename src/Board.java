@@ -1,5 +1,3 @@
-package server;
-
 /** Represents a board
 *@author David Tang
  *@author 00502532

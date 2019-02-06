@@ -17,29 +17,31 @@ public class ClientThreadPool {
 			stdIn = new BufferedReader(new InputStreamReader(System.in));
 			socketIn = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
 			socketOut = new PrintWriter((aSocket.getOutputStream()), true);
+
 		} catch (IOException e) {
 			System.err.println(e.getStackTrace());
 		}
 	}
 
 	public void communicate() {
-		String line = "hello";
+		String line = "";
 		String response = "";
-		while (!line.equals("QUIT")) {
-			try {
 
-				System.out.println("please enter a word: ");
-				line = stdIn.readLine();
-				socketOut.println(line);
-				response = socketIn.readLine();
-				System.out.println(response);
-			} catch (IOException e) {
-				System.out.println("Sending error: " + e.getMessage());
-			}
-			catch (Exception e)
-			{
-				System.out.println("what is going on " + e.getMessage());
-				break;
+		while (!line.equals("QUIT")) {
+			System.out.println("Please enter a name");
+
+			while (true) {
+				try {
+					line = stdIn.readLine();
+					socketOut.println(line);
+					response = socketIn.readLine();
+					System.out.println(response);
+				} catch (IOException e) {
+					System.out.println("Sending error: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("what is going on " + e.getMessage());
+					break;
+				}
 			}
 		}
 		try {
