@@ -19,9 +19,9 @@ public class Game implements Constants, Runnable {
 	 * creates a board for the game
 	 */
     public Game(Socket x, Socket o) {
-        xSocket = x;
-        oSocket = o;
         theBoard  = new Board();
+		xPlayer = new Player(x, 'X', theBoard);
+		oPlayer = new Player(o, 'O', theBoard);
         theRef = new Referee();
 	}
     
@@ -38,29 +38,27 @@ public class Game implements Constants, Runnable {
 
 	@Override
 	public void run() {
-		xPlayer = new Player(xSocket, 'X', theBoard);
-		oPlayer = new Player(oSocket, 'O', theBoard);
 		theRef.setxPlayer(xPlayer);
 		theRef.setoPlayer(oPlayer);
+		theRef.setBoard(theBoard);
 		appointReferee(theRef);
-		xPlayer.play();
 		
 		// TODO Auto-generated method stub
-		String line = null;
-		while (true) {
-			try {
-				line = in.readLine();
-				if (line.equals("QUIT")) {
-					line = "Good Bye!";
-					out.println(line);
-					break;
-				}
-				line = line.toUpperCase();
-				out.println(line);
-			} catch (IOException e) {
-			}
-
-		}
+		//String line = null;
+//		while (true) {
+//			try {
+//				System.out.println("test");
+//				line = in.readLine();
+//				if (line.equals("QUIT")) {
+//					line = "Good Bye!";
+//					out.println(line);
+//					break;
+//				}
+//				out.println(line);
+//			} catch (IOException e) {
+//			}
+//
+//		}
 
 	}
 	//public static void main(String[] args) throws IOException {

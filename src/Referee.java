@@ -12,7 +12,13 @@ public class Referee {
     public void runTheGame(){
         xPlayer.setOpponent(oPlayer);
         oPlayer.setOpponent(xPlayer);
-        xPlayer.play();
+
+        while (!board.xWins() && !board.oWins() && !board.isFull()) {
+            xPlayer.play();
+            if (board.xWins() || board.oWins() || board.isFull())
+                break;
+            xPlayer.getOpponent().play();
+        }
     }
 
     /** Sets the board

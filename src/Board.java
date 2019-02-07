@@ -176,7 +176,7 @@ public class Board implements Constants {
 			columnHeaders+= "|col " + j;
 		//System.out.print("|col " + j);
 		//System.out.println();
-		columnHeaders+='\n';
+		columnHeaders+="\n";
 
 		return columnHeaders;
 	}
@@ -218,4 +218,5 @@ public class Board implements Constants {
 	public char[][] getTheBoard() {
 		return theBoard;
 	}
+
 }

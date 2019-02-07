@@ -26,16 +26,56 @@ public class ClientThreadPool {
 	public void communicate() {
 		String line = "";
 		String response = "";
+		String[] board;
 
 		while (!line.equals("QUIT")) {
 			System.out.println("Please enter a name");
+			try {
+				line = stdIn.readLine();
+				socketOut.println("Name: " +line);
+				response = socketIn.readLine();
+
+				if (response.contains("Welcome"))
+					System.out.println(response);
+			}catch (IOException e){
+				System.out.println("Error adding name");
+			}
 
 			while (true) {
 				try {
-					line = stdIn.readLine();
-					socketOut.println(line);
+					//System.out.println("test2");
 					response = socketIn.readLine();
-					System.out.println(response);
+
+					if (response.contains("|col")){
+						System.out.println(response);
+						for (int i = 0; i < 13; i++) {
+							response = socketIn.readLine();
+							System.out.println(response);
+						}
+					}
+
+					if (response.contains("which row")){
+						System.out.println(response);
+						line = stdIn.readLine();
+						socketOut.println("Row:" + line);
+					}
+
+					else if (response.contains("desired column")){
+						System.out.println(response);
+						line = stdIn.readLine();
+						socketOut.println("Column:" + line);
+					}
+
+					else if (response.contains("already taken")|| response.contains("Waiting for opponent"))
+						System.out.println(response);
+
+					else if (response.contains("wins") || response.contains("draw")){
+                        System.out.println(response);
+                        System.exit(0);
+                    }
+
+
+
 				} catch (IOException e) {
 					System.out.println("Sending error: " + e.getMessage());
 				} catch (Exception e) {
@@ -53,7 +93,7 @@ public class ClientThreadPool {
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		ClientThreadPool aClient = new ClientThreadPool("localhost", 9898);
 		aClient.communicate();
 	}
